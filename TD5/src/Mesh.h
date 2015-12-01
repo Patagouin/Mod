@@ -18,6 +18,8 @@ public:
     void detectHole(Shader *shader);
     void specifyVertexDataHole(Shader *shader);
     void displayHoles();
+    void holeTriangulation();
+    void earClimpy();
 
     surface_mesh::Surface_mesh mHalfEdge;
 

@@ -302,6 +302,78 @@ void Mesh::displayHoles()
 
 }
 
+void Mesh::holeTriangulation()
+{
+    vector<Surface_mesh::Vertex> hole;
+    hole=mHoles[2];
+
+    Vector3f geoCenter(0.,0.,0.);
+    Vector3f normGeoC(0.,0.,0.);
+    Vector3f colGeo(0.,0.,0.);
 
 
+        for(int i=0; i<hole.size();++i)
+        {
+
+            for(int j=0; j<posVert.size();++j)
+            {
+
+                if(hole[i]==posVert[j])
+                {
+
+                    geoCenter+=mPositions[j];
+                    normGeoC+=mNormals[j];
+                    colGeo+=mColors[j];
+                    j=posVert.size();
+
+                }
+            }
+        }
+
+        geoCenter = geoCenter/hole.size();
+        normGeoC = normGeoC/hole.size();
+        colGeo = colGeo/hole.size();
+
+        mPositions.push_back(geoCenter);
+        mNormals.push_back(normGeoC);
+        mColors.push_back(colGeo);
+
+        //triangulation
+
+            for(int i=0; i<hole.size()-1;++i)
+            {
+
+                mIndices.push_back(Vector3i(hole[i].idx(), mPositions.size()-1, hole[i+1].idx()));
+            }
+
+
+            mIndices.push_back(Vector3i(hole[hole.size()-1].idx(), mPositions.size()-1, hole[0].idx()));
+
+
+}
+
+
+void Mesh::earClimpy()
+{
+ vector<Surface_mesh::Vertex> hole;
+ hole=mHoles[2];
+
+Vector3f v0,v1,v2;
+ for(int i=0; i<hole.size();++i)
+ {
+     for(int j=0; j<posVert.size();++j)
+     {
+
+         if(hole[i]==posVert[j])
+         {
+
+             j=posVert.size();
+
+         }
+     }
+ }
+
+
+
+}
 

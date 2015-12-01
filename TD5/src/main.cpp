@@ -31,6 +31,7 @@ Shader mBlinn, mSimple, mHole, mMesh;
 
 // geometrical represnetation of a pointlight
 Vector3f mLightPos(1,1,1);
+Vector3f mLightPos2(-1,-1,-1);
 
 // Camera parameters
 Trackball mCamera;
@@ -74,6 +75,7 @@ void initGL()
 
     //Mesh
     mesh = new Mesh();
+    //mesh->load(PGHP_DIR"/data/PhantomUgly.obj");
     //mesh->load(PGHP_DIR"/data/PhantomLite.obj");
     //mesh->load(PGHP_DIR"/data/bunny.obj");
     mesh->load(PGHP_DIR"/data/sphere.obj");
@@ -108,13 +110,16 @@ void render(GLFWwindow* window)
     glUniformMatrix4fv(mBlinn.getUniformLocation("modelview_matrix"),1,false,mCamera.computeViewMatrix().data());
     Vector4f light_pos;
     light_pos << mLightPos , 1.0f;
+    Vector4f light_pos2;
+    light_pos2 << mLightPos2 , 1.0f;
     glUniform4fv(mBlinn.getUniformLocation("light_pos"),1,light_pos.data());
+    glUniform4fv(mBlinn.getUniformLocation("light_pos2"),1,light_pos2.data());
 
     glUniformMatrix4fv(mBlinn.getUniformLocation("object_matrix"),1,false,/*pc*/mesh->getTransformationMatrix().data());
     Matrix3f normal_matrix = (mCamera.computeViewMatrix()*/*pc*/mesh->getTransformationMatrix()).linear().inverse().transpose();
     glUniformMatrix3fv(mBlinn.getUniformLocation("normal_matrix"),1,false,normal_matrix.data());
 
-    mesh->draw(&mBlinn);
+    mesh->draw(&mBlinn,true);
     //mesh->drawEdges(&mHole);
     //pc->draw(&mBlinn);
 
@@ -250,7 +255,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
             mesh->detectHole(&mHole);
             mesh->init(&mBlinn);
-            mesh->displayHoles();
+            //mesh->displayHoles();
 
 
 
@@ -261,36 +266,32 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         else if(key == GLFW_KEY_B)
         {
 
-            std::vector< std::vector<int> > Vtest;
-
-            std::vector<int> V1, V2;
-
-            V1.push_back(0);
-            V1.push_back(1);
-            V1.push_back(2);
-
-            V2.push_back(3);
-            V2.push_back(4);
-            V2.push_back(5);
-            V2.push_back(7);
-            V2.push_back(8);
-            V2.push_back(9);
-
-            Vtest.push_back(V1);
-            Vtest.push_back(V2);
-
-            for(int i=0; i<Vtest.size();++i)
-            {
-                for(int j=0; j<Vtest[i].size(); ++j)
-                {
-                    std::cout << Vtest[i][j] << std::endl;
-                }
-                std::cout << "___________" << std::endl;
-            }
+            mesh->holeTriangulation();
+            mesh->init(&mBlinn);
 
 
 
         }
+
+        else if(key == GLFW_KEY_P)
+        {
+            Vector2f A(2,-3);
+            Vector2f B(3,1);
+            Vector2f C(-1,4);
+
+            Vector2f AB = A-B;
+            Vector2f AC = A-C;
+
+            double cosBAC=( AB.dot(AC) ) / (AB.norm() * AC.norm());
+
+            double BAC=acos(cosBAC);
+
+            double angle = (BAC/M_PI) * 180;
+
+            std::cout << angle << std::endl;
+
+        }
+
 
 
 
