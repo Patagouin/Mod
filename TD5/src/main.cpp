@@ -76,10 +76,14 @@ void initGL()
     //Mesh
     mesh = new Mesh();
     //mesh->load(PGHP_DIR"/data/PhantomUgly.obj");
+    //mesh->load(PGHP_DIR"/data/Kate.obj");
     //mesh->load(PGHP_DIR"/data/PhantomLite.obj");
     //mesh->load(PGHP_DIR"/data/bunny.obj");
-    mesh->load(PGHP_DIR"/data/sphere.obj");
+    //mesh->load(PGHP_DIR"/data/sphere.obj");
     //mesh->load(PGHP_DIR"/data/sphere2.obj");
+    //mesh->load(PGHP_DIR"/data/trouComplexe5.obj");
+    //mesh->load(PGHP_DIR"/data/HoleMoreComplex.obj");
+    mesh->load(PGHP_DIR"/data/HoleMoreComplex1.obj");
     mesh->makeUnitary();
     mesh->init(&mBlinn);
 
@@ -119,7 +123,7 @@ void render(GLFWwindow* window)
     Matrix3f normal_matrix = (mCamera.computeViewMatrix()*/*pc*/mesh->getTransformationMatrix()).linear().inverse().transpose();
     glUniformMatrix3fv(mBlinn.getUniformLocation("normal_matrix"),1,false,normal_matrix.data());
 
-    mesh->draw(&mBlinn,true);
+    mesh->draw(&mBlinn/*,true*/);
     //mesh->drawEdges(&mHole);
     //pc->draw(&mBlinn);
 
@@ -266,29 +270,94 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         else if(key == GLFW_KEY_B)
         {
 
-            mesh->holeTriangulation();
+            //mesh->holeTriangulation();
+            mesh->fillHole(0);
             mesh->init(&mBlinn);
 
 
 
         }
 
+
+        else if(key == GLFW_KEY_N)
+        {
+            mesh->detectHole(&mHole);
+            mesh->init(&mBlinn);
+//            mesh->earClimpy();
+            mesh->fillHole(1);
+            mesh->init(&mBlinn);
+
+        }
+
         else if(key == GLFW_KEY_P)
         {
-            Vector2f A(2,-3);
-            Vector2f B(3,1);
-            Vector2f C(-1,4);
+//            Vector2f A(2,-3);
+//            Vector2f B(3,1);
+//            Vector2f C(-1,4);
 
-            Vector2f AB = A-B;
-            Vector2f AC = A-C;
+//            Vector2f AB = B-A;
+//            Vector2f AC = C-A;
 
-            double cosBAC=( AB.dot(AC) ) / (AB.norm() * AC.norm());
+//            double cosBAC=( AB.dot(AC) ) / (AB.norm() * AC.norm());
 
-            double BAC=acos(cosBAC);
+//            double BAC=acos(cosBAC);
 
-            double angle = (BAC/M_PI) * 180;
+//            double angle = (BAC/M_PI) * 180;
 
-            std::cout << angle << std::endl;
+//            std::cout << BAC << std::endl;
+
+//            Vector3f A(0,0,0);
+//            Vector3f B(3,0,0);
+//            Vector3f C(1.5,3,0);
+
+//            Vector3f M(1.5,1.5,0);
+//            Vector3f N(5,5,5);
+
+//            Vector3f AB = B-A;
+//            Vector3f AM = M-A;
+//            Vector3f AN = N-A;
+//            Vector3f AC = C-A;
+
+//            Vector3f BA = A-B;
+//            Vector3f BM = M-B;
+//            Vector3f BN = N-B;
+//            Vector3f BC = C-B;
+
+//            Vector3f CA = A-C;
+//            Vector3f CM = M-C;
+//            Vector3f CN = N-C;
+//            Vector3f CB = B-C;
+
+//            float v0m = (AB.cross(AM)).dot(AM.cross(AC));
+//            float v1m = (BA.cross(BM)).dot(BM.cross(BC));
+//            float v2m = (CA.cross(CM)).dot(CM.cross(CB));
+
+//            float v0n = (AB.cross(AN)).dot(AN.cross(AC));
+//            float v1n = (BA.cross(BN)).dot(BN.cross(BC));
+//            float v2n = (CA.cross(CN)).dot(CN.cross(CB));
+
+//            if(v0m>=0 && v1m>=0 && v2m>=0)
+//                std::cout<< "M appartient à ABC" << std::endl;
+//            else
+//                std::cout<< "M n'appartient pas à ABC" << std::endl;
+
+//            if(v0n>=0 && v1n>=0 && v2n>=0)
+//                std::cout<< "N appartient à ABC" << std::endl;
+//            else
+//                std::cout<< "N n'appartient pas à ABC" << std::endl;
+
+              Vector3f A(1,0);
+              Vector3f B(0,1);
+
+              Vector3f C = A.cross(B);
+              Vector3f D = B.cross(A);
+
+              std::cout<< "C="<< C << std::endl<<std::endl;
+
+              std::cout<< "D="<< D << std::endl;
+
+
+
 
         }
 
