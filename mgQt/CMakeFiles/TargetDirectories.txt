@@ -1,0 +1,4 @@
+/home/tony/Documents/mg/mgQtrecent/decimation_correction/SOIL/CMakeFiles/SOIL.dir
+/home/tony/Documents/mg/mgQtrecent/decimation_correction/glfw/src/CMakeFiles/glfw.dir
+/home/tony/Documents/mg/mgQtrecent/decimation_correction/CMakeFiles/mg.dir
+/home/tony/Documents/mg/mgQtrecent/decimation_correction/glfw/CMakeFiles/uninstall.dir
