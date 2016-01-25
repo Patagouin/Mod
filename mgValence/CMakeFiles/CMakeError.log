@@ -1,0 +1,494 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1590079702/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1590079702.dir/build.make CMakeFiles/cmTryCompileExec1590079702.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1590079702.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1590079702.dir/CheckSymbolExists.c.o   -c /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1590079702
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1590079702.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1590079702.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1590079702 -rdynamic 
+CMakeFiles/cmTryCompileExec1590079702.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: erreur: ld a retourné 1 code d'état d'exécution
+CMakeFiles/cmTryCompileExec1590079702.dir/build.make:88: recipe for target 'cmTryCompileExec1590079702' failed
+make[1]: *** [cmTryCompileExec1590079702] Error 1
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Makefile:117: recipe for target 'cmTryCompileExec1590079702/fast' failed
+make: *** [cmTryCompileExec1590079702/fast] Error 2
+
+File /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2431710786/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2431710786.dir/build.make CMakeFiles/cmTryCompileExec2431710786.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2431710786.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec2431710786.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2431710786
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2431710786.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec2431710786.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2431710786 -rdynamic -lpthreads 
+/usr/bin/ld.bfd.real: ne peut trouver -lpthreads
+collect2: erreur: ld a retourné 1 code d'état d'exécution
+CMakeFiles/cmTryCompileExec2431710786.dir/build.make:88: recipe for target 'cmTryCompileExec2431710786' failed
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec2431710786] Error 1
+Makefile:117: recipe for target 'cmTryCompileExec2431710786/fast' failed
+make: *** [cmTryCompileExec2431710786/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec345242195/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec345242195.dir/build.make CMakeFiles/cmTryCompileExec345242195.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec345242195.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTryCompileExec345242195.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.2/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec345242195
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec345242195.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTryCompileExec345242195.dir/CheckFunctionExists.c.o  -o cmTryCompileExec345242195 -rdynamic -lGL 
+CMakeFiles/cmTryCompileExec345242195.dir/CheckFunctionExists.c.o: dans la fonction « main »:
+CheckFunctionExists.c:(.text+0x15): référence indéfinie vers « glXGetProcAddressEXT »
+collect2: erreur: ld a retourné 1 code d'état d'exécution
+CMakeFiles/cmTryCompileExec345242195.dir/build.make:89: recipe for target 'cmTryCompileExec345242195' failed
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec345242195] Error 1
+Makefile:117: recipe for target 'cmTryCompileExec345242195/fast' failed
+make: *** [cmTryCompileExec345242195/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_eaa2b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_eaa2b.dir/build.make CMakeFiles/cmTC_eaa2b.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_eaa2b.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_eaa2b.dir/CheckSymbolExists.c.o   -c /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_eaa2b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eaa2b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_eaa2b.dir/CheckSymbolExists.c.o  -o cmTC_eaa2b -rdynamic 
+CMakeFiles/cmTC_eaa2b.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_eaa2b.dir/build.make:97: recipe for target 'cmTC_eaa2b' failed
+make[1]: *** [cmTC_eaa2b] Error 1
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_eaa2b/fast' failed
+make: *** [cmTC_eaa2b/fast] Error 2
+
+File /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5755c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5755c.dir/build.make CMakeFiles/cmTC_5755c.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5755c.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_5755c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_5755c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5755c.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_5755c.dir/CheckFunctionExists.c.o  -o cmTC_5755c -rdynamic -lpthreads 
+/usr/bin/ld.bfd.real: ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_5755c.dir/build.make:97: recipe for target 'cmTC_5755c' failed
+make[1]: *** [cmTC_5755c] Error 1
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_5755c/fast' failed
+make: *** [cmTC_5755c/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /net/cremi/tgaboula/M2/Modelisation/link/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0e7af/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0e7af.dir/build.make CMakeFiles/cmTC_0e7af.dir/build
+make[1]: Entering directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0e7af.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_0e7af.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0e7af
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e7af.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTC_0e7af.dir/CheckFunctionExists.c.o  -o cmTC_0e7af -rdynamic /usr/lib/x86_64-linux-gnu/libGL.so 
+CMakeFiles/cmTC_0e7af.dir/CheckFunctionExists.c.o: dans la fonction « main »:
+CheckFunctionExists.c:(.text+0x15): référence indéfinie vers « glXGetProcAddressEXT »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0e7af.dir/build.make:98: recipe for target 'cmTC_0e7af' failed
+make[1]: *** [cmTC_0e7af] Error 1
+make[1]: Leaving directory '/autofs/netapp/travail/tgaboula/Modelisation/decimation_correction/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_0e7af/fast' failed
+make: *** [cmTC_0e7af/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec691674029/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec691674029.dir/build.make CMakeFiles/cmTryCompileExec691674029.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec691674029.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec691674029.dir/CheckSymbolExists.c.o   -c /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec691674029
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec691674029.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec691674029.dir/CheckSymbolExists.c.o  -o cmTryCompileExec691674029 -rdynamic 
+CMakeFiles/cmTryCompileExec691674029.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec691674029.dir/build.make:88: recipe for target 'cmTryCompileExec691674029' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec691674029] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec691674029/fast' failed
+make: *** [cmTryCompileExec691674029/fast] Error 2
+
+File /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3409103988/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3409103988.dir/build.make CMakeFiles/cmTryCompileExec3409103988.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3409103988.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec3409103988.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3409103988
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3409103988.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec3409103988.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3409103988 -rdynamic -lpthreads 
+/usr/bin/ld: ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec3409103988.dir/build.make:88: recipe for target 'cmTryCompileExec3409103988' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec3409103988] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec3409103988/fast' failed
+make: *** [cmTryCompileExec3409103988/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec522781629/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec522781629.dir/build.make CMakeFiles/cmTryCompileExec522781629.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec522781629.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTryCompileExec522781629.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec522781629
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec522781629.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTryCompileExec522781629.dir/CheckFunctionExists.c.o  -o cmTryCompileExec522781629 -rdynamic -lGL 
+CMakeFiles/cmTryCompileExec522781629.dir/CheckFunctionExists.c.o: dans la fonction « main »:
+CheckFunctionExists.c:(.text+0x15): référence indéfinie vers « glXGetProcAddressEXT »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec522781629.dir/build.make:89: recipe for target 'cmTryCompileExec522781629' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec522781629] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec522781629/fast' failed
+make: *** [cmTryCompileExec522781629/fast] Error 2
+
+
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2536168020/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2536168020.dir/build.make CMakeFiles/cmTryCompileExec2536168020.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2536168020.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2536168020.dir/CheckSymbolExists.cxx.o -c /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^
+CMakeFiles/cmTryCompileExec2536168020.dir/build.make:57: recipe for target 'CMakeFiles/cmTryCompileExec2536168020.dir/CheckSymbolExists.cxx.o' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec2536168020.dir/CheckSymbolExists.cxx.o] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec2536168020/fast' failed
+make: *** [cmTryCompileExec2536168020/fast] Error 2
+
+File /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1608466802/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1608466802.dir/build.make CMakeFiles/cmTryCompileExec1608466802.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1608466802.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec1608466802.dir/CheckSymbolExists.cxx.o -c /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^
+CMakeFiles/cmTryCompileExec1608466802.dir/build.make:57: recipe for target 'CMakeFiles/cmTryCompileExec1608466802.dir/CheckSymbolExists.cxx.o' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec1608466802.dir/CheckSymbolExists.cxx.o] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec1608466802/fast' failed
+make: *** [cmTryCompileExec1608466802/fast] Error 2
+
+File /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3408881174/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3408881174.dir/build.make CMakeFiles/cmTryCompileExec3408881174.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3408881174.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec3408881174.dir/CheckSymbolExists.cxx.o -c /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^
+CMakeFiles/cmTryCompileExec3408881174.dir/build.make:57: recipe for target 'CMakeFiles/cmTryCompileExec3408881174.dir/CheckSymbolExists.cxx.o' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [CMakeFiles/cmTryCompileExec3408881174.dir/CheckSymbolExists.cxx.o] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec3408881174/fast' failed
+make: *** [cmTryCompileExec3408881174/fast] Error 2
+
+File /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1471755630/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1471755630.dir/build.make CMakeFiles/cmTryCompileExec1471755630.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1471755630.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1471755630.dir/CheckSymbolExists.c.o   -c /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1471755630
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1471755630.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1471755630.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1471755630 -rdynamic 
+CMakeFiles/cmTryCompileExec1471755630.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec1471755630.dir/build.make:88: recipe for target 'cmTryCompileExec1471755630' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec1471755630] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec1471755630/fast' failed
+make: *** [cmTryCompileExec1471755630/fast] Error 2
+
+File /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1822919890/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1822919890.dir/build.make CMakeFiles/cmTryCompileExec1822919890.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1822919890.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1822919890.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1822919890
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1822919890.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1822919890.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1822919890 -rdynamic -lpthreads 
+/usr/bin/ld: ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec1822919890.dir/build.make:88: recipe for target 'cmTryCompileExec1822919890' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec1822919890] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec1822919890/fast' failed
+make: *** [cmTryCompileExec1822919890/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2800237733/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2800237733.dir/build.make CMakeFiles/cmTryCompileExec2800237733.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2800237733.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTryCompileExec2800237733.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2800237733
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2800237733.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTryCompileExec2800237733.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2800237733 -rdynamic -lGL 
+CMakeFiles/cmTryCompileExec2800237733.dir/CheckFunctionExists.c.o: dans la fonction « main »:
+CheckFunctionExists.c:(.text+0x15): référence indéfinie vers « glXGetProcAddressEXT »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec2800237733.dir/build.make:89: recipe for target 'cmTryCompileExec2800237733' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec2800237733] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec2800237733/fast' failed
+make: *** [cmTryCompileExec2800237733/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec612219202/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec612219202.dir/build.make CMakeFiles/cmTryCompileExec612219202.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec612219202.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec612219202.dir/CheckSymbolExists.c.o   -c /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec612219202
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec612219202.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec612219202.dir/CheckSymbolExists.c.o  -o cmTryCompileExec612219202 -rdynamic 
+CMakeFiles/cmTryCompileExec612219202.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec612219202.dir/build.make:88: recipe for target 'cmTryCompileExec612219202' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec612219202] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec612219202/fast' failed
+make: *** [cmTryCompileExec612219202/fast] Error 2
+
+File /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec349625058/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec349625058.dir/build.make CMakeFiles/cmTryCompileExec349625058.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec349625058.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec349625058.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec349625058
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec349625058.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec349625058.dir/CheckFunctionExists.c.o  -o cmTryCompileExec349625058 -rdynamic -lpthreads 
+/usr/bin/ld: ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec349625058.dir/build.make:88: recipe for target 'cmTryCompileExec349625058' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec349625058] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec349625058/fast' failed
+make: *** [cmTryCompileExec349625058/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2698832351/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2698832351.dir/build.make CMakeFiles/cmTryCompileExec2698832351.dir/build
+make[1]: Entering directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2698832351.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTryCompileExec2698832351.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2698832351
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2698832351.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTryCompileExec2698832351.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2698832351 -rdynamic -lGL 
+CMakeFiles/cmTryCompileExec2698832351.dir/CheckFunctionExists.c.o: dans la fonction « main »:
+CheckFunctionExists.c:(.text+0x15): référence indéfinie vers « glXGetProcAddressEXT »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec2698832351.dir/build.make:89: recipe for target 'cmTryCompileExec2698832351' failed
+make[1]: Leaving directory '/home/tony/Documents/mg/mgQtOld/decimation_correction/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec2698832351] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec2698832351/fast' failed
+make: *** [cmTryCompileExec2698832351/fast] Error 2
+
+

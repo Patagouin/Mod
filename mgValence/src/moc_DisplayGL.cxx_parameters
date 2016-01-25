@@ -1,0 +1,9 @@
+-I/home/tony/Documents/mg/decimation_correction/glfw/include
+-I/home/tony/Documents/mg/decimation_correction/glfw/deps
+-I/home/tony/Documents/mg/decimation_correction/SOIL/src
+-I/home/tony/Documents/mg/decimation_correction/include
+-I/home/tony/Documents/mg/decimation_correction/src
+-DPGHP_DIR="/home/tony/Documents/mg/decimation_correction"
+-o
+/home/tony/Documents/mg/decimation_correction/src/moc_DisplayGL.cxx
+/home/tony/Documents/mg/decimation_correction/src/DisplayGL.h
