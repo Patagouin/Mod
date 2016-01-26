@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <tr1/unordered_map>
 
 #include "OpenGL.h"
 #include <GLFW/glfw3.h>
@@ -44,8 +46,9 @@ int mButton = -1;
 PointCloud* pc;
 
 //Mesh
-Mesh* mesh;
-
+//Mesh* mesh;
+std::vector<Mesh*> mMeshes;
+int mCurrentMesh = -1;
 //Octree Debug
 Octree* octree;
 WireCube* wirecube;
@@ -65,7 +68,7 @@ void initGL()
     mBlinn.loadFromFiles(PGHP_DIR"/shaders/blinn.vert", PGHP_DIR"/shaders/blinn.frag");
     mSimple.loadFromFiles(PGHP_DIR"/shaders/simple.vert", PGHP_DIR"/shaders/simple.frag");
     mHole.loadFromFiles(PGHP_DIR"/shaders/hole.vert", PGHP_DIR"/shaders/hole.frag");
-    mMesh.loadFromFiles(PGHP_DIR"/shaders/mesh.vert", PGHP_DIR"/shaders/mesh.frag");
+//    mMesh.loadFromFiles(PGHP_DIR"/shaders/mesh.vert", PGHP_DIR"/shaders/mesh.frag");
 
     //PointCloud
     pc = new PointCloud();
@@ -74,18 +77,61 @@ void initGL()
     pc->init(&mBlinn);
 
     //Mesh
-    mesh = new Mesh();
+
+    Mesh* mesh = new Mesh();
     //mesh->load(PGHP_DIR"/data/PhantomUgly.obj");
-    //mesh->load(PGHP_DIR"/data/Kate.obj");
     //mesh->load(PGHP_DIR"/data/PhantomLite.obj");
-    //mesh->load(PGHP_DIR"/data/bunny.obj");
-    //mesh->load(PGHP_DIR"/data/sphere.obj");
-    //mesh->load(PGHP_DIR"/data/sphere2.obj");
-    //mesh->load(PGHP_DIR"/data/trouComplexe5.obj");
-    //mesh->load(PGHP_DIR"/data/HoleMoreComplex.obj");
-    mesh->load(PGHP_DIR"/data/HoleMoreComplex1.obj");
+    //mesh->load(PGHP_DIR"/data/cube.obj");
+    mesh->load(PGHP_DIR"/data/ObjConnexe.obj");
     mesh->makeUnitary();
     mesh->init(&mBlinn);
+    mMeshes.push_back(mesh);
+    //kate_leg------------
+    Mesh* kate_leg = new Mesh();
+    kate_leg->load(PGHP_DIR"/data/Kate_leg.obj");
+    kate_leg->makeUnitary();
+    kate_leg->init(&mBlinn);
+    mMeshes.push_back(kate_leg);
+    //kate_fur------------
+    Mesh* kate_fur = new Mesh();
+    kate_fur->load(PGHP_DIR"/data/Kate_fur.obj");
+    kate_fur->makeUnitary();
+    kate_fur->init(&mBlinn);
+    mMeshes.push_back(kate_fur);
+    //bunny------------
+    Mesh* bunny = new Mesh();
+    bunny->load(PGHP_DIR"/data/bunny_stanford.obj");
+    bunny->makeUnitary();
+    bunny->init(&mBlinn);
+    mMeshes.push_back(bunny);
+    //sphere------------
+    Mesh* sphere = new Mesh();
+    sphere->load(PGHP_DIR"/data/sphere.obj");
+    sphere->makeUnitary();
+    sphere->init(&mBlinn);
+    mMeshes.push_back(sphere);
+    //cube------------
+    Mesh* cube = new Mesh();
+    cube->load(PGHP_DIR"/data/cube.obj");
+    cube->makeUnitary();
+    cube->init(&mBlinn);
+    mMeshes.push_back(cube);
+    //2cube------------
+    Mesh* twoCubes = new Mesh();
+    twoCubes->load(PGHP_DIR"/data/twoCubes.obj");
+    twoCubes->makeUnitary();
+    twoCubes->init(&mBlinn);
+    mMeshes.push_back(twoCubes);
+    //3compConnex------------
+    Mesh* troisConnex = new Mesh();
+    troisConnex->load(PGHP_DIR"/data/troisConnex.obj");
+    troisConnex->makeUnitary();
+    troisConnex->init(&mBlinn);
+    mMeshes.push_back(troisConnex);
+
+    //---------------------
+
+    mCurrentMesh = mMeshes.size()-1;
 
     //Octree
     octree = new Octree(pc,15,10);
@@ -119,12 +165,13 @@ void render(GLFWwindow* window)
     glUniform4fv(mBlinn.getUniformLocation("light_pos"),1,light_pos.data());
     glUniform4fv(mBlinn.getUniformLocation("light_pos2"),1,light_pos2.data());
 
-    glUniformMatrix4fv(mBlinn.getUniformLocation("object_matrix"),1,false,/*pc*/mesh->getTransformationMatrix().data());
-    Matrix3f normal_matrix = (mCamera.computeViewMatrix()*/*pc*/mesh->getTransformationMatrix()).linear().inverse().transpose();
+    glUniformMatrix4fv(mBlinn.getUniformLocation("object_matrix"),1,false,/*pc*//*mesh*/mMeshes[mCurrentMesh]->getTransformationMatrix().data());
+    Matrix3f normal_matrix = (mCamera.computeViewMatrix()*/*pc*//*mesh*/mMeshes[mCurrentMesh]->getTransformationMatrix()).linear().inverse().transpose();
     glUniformMatrix3fv(mBlinn.getUniformLocation("normal_matrix"),1,false,normal_matrix.data());
 
-    mesh->draw(&mBlinn/*,true*/);
-    //mesh->drawEdges(&mHole);
+
+    mMeshes[mCurrentMesh]->draw(&mBlinn/*,true*/);
+
     //pc->draw(&mBlinn);
 
 
@@ -162,7 +209,7 @@ void render(GLFWwindow* window)
     }
 
     mHole.activate();
-    glUniformMatrix4fv(mHole.getUniformLocation("object_matrix"),1,false,mesh->getTransformationMatrix().data());
+    glUniformMatrix4fv(mHole.getUniformLocation("object_matrix"),1,false,/*mesh*/mMeshes[mCurrentMesh]->getTransformationMatrix().data());
     glUniformMatrix3fv(mHole.getUniformLocation("normal_matrix"),1,false,normal_matrix.data());
     //mesh->drawEdges(&mHole);
 
@@ -236,6 +283,14 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
             if(octreeVisu > -1)
                 octreeVisu--;
         }
+        else if(key == GLFW_KEY_UP)
+        {
+            mCurrentMesh = (mCurrentMesh+1)%mMeshes.size();
+        }
+        else if(key == GLFW_KEY_DOWN)
+        {
+            mCurrentMesh = (mCurrentMesh-1)%mMeshes.size();
+        }
         else if(key == GLFW_KEY_D)
         {
             octree->decimateOneDepth();
@@ -253,39 +308,29 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
             std::cout << "ending number of points " << pc->numPoints() << std::endl;
         }
-        else if(key == GLFW_KEY_X)
+        else if(key == GLFW_KEY_X)//detection de trou
         {
 
 
-            mesh->detectHole(&mHole);
-            mesh->init(&mBlinn);
-            //mesh->displayHoles();
-
+            mMeshes[mCurrentMesh]->detectHole();
 
 
 
 
         }
 
-        else if(key == GLFW_KEY_B)
+        else if(key == GLFW_KEY_B)//triangulation avec geocenter
         {
-
-            //mesh->holeTriangulation();
-            mesh->fillHole(0);
-            mesh->init(&mBlinn);
-
-
+            mMeshes[mCurrentMesh]->fillHole(0);
 
         }
 
 
-        else if(key == GLFW_KEY_N)
+        else if(key == GLFW_KEY_N)//triangulation avec ear clipping
         {
-            mesh->detectHole(&mHole);
-            mesh->init(&mBlinn);
-//            mesh->earClimpy();
-            mesh->fillHole(1);
-            mesh->init(&mBlinn);
+            //mMeshes[mCurrentMesh]->displayHoles();
+            mMeshes[mCurrentMesh]->fillHole(1);
+
 
         }
 
@@ -345,22 +390,57 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 //                std::cout<< "N appartient à ABC" << std::endl;
 //            else
 //                std::cout<< "N n'appartient pas à ABC" << std::endl;
+////
+//              Vector3f A(1,0);
+//              Vector3f B(0,1);
 
-              Vector3f A(1,0);
-              Vector3f B(0,1);
+//              Vector3f C = A.cross(B);
+//              Vector3f D = B.cross(A);
 
-              Vector3f C = A.cross(B);
-              Vector3f D = B.cross(A);
+//              std::cout<< "C="<< C << std::endl<<std::endl;
 
-              std::cout<< "C="<< C << std::endl<<std::endl;
+//              std::cout<< "D="<< D << std::endl;
+////
 
-              std::cout<< "D="<< D << std::endl;
+            std::tr1::unordered_map<std::string, int> months;
+                months["january"] = 31;
+                months["february"] = 28;
+                months["march"] = 31;
+                months["april"] = 30;
+                months["may"] = 31;
+                months["june"] = 30;
+                months["july"] = 31;
+                months["august"] = 31;
+                months["september"] = 30;
+                months["october"] = 31;
+                months["november"] = 30;
+                months["december"] = 31;
+//                std::cout << "september -> " << months["september"] << std::endl;
+//                std::cout << "april     -> " << months["april"] << std::endl;
+//                std::cout << "december  -> " << months["december"] << std::endl;
+//                std::cout << "february  -> " << months["february"] << std::endl;
+                std::cout << " months.size() ->" <<  months.size() << std::endl;
+
+                std::tr1::unordered_map<std::string, int>::const_iterator got = months.find ("input");
+
+                if ( got == months.end() )
+                  std::cout << "not found";
+                else
+                  std::cout << got->first << " is " << got->second;
+
+                std::cout << std::endl;
+
 
 
 
 
         }
 
+        else if(key == GLFW_KEY_O)
+        {
+            mMeshes[mCurrentMesh]->nbConnex();
+            //mMeshes[mCurrentMesh]->displayConnex();
+        }
 
 
 
