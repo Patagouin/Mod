@@ -6,9 +6,6 @@
 #include <sstream>
 #include <cstdio>
 
-#include <string>
-#include <tr1/unordered_map>
-
 using namespace std;
 using namespace Eigen;
 using namespace surface_mesh;
@@ -82,7 +79,7 @@ void Mesh::init(Shader *shader)
     mReady = true;
 }
 
-void Mesh::draw(Shader *shader, bool drawEdges)
+void Mesh::draw(Shader *shader, bool drawEdges) 
 {
     if (!mReady) {
         cerr<<"Warning: Mesh not ready for rendering" << endl;
@@ -95,166 +92,314 @@ void Mesh::draw(Shader *shader, bool drawEdges)
         specifyVertexData(shader);
     }
 
-
     drawEdges ? glPolygonMode( GL_FRONT_AND_BACK, GL_LINE ) : glPolygonMode( GL_FRONT_AND_BACK, GL_FILL ) ;
     glDrawElements(GL_TRIANGLES, mIndices.size()*sizeof(Vector3i),  GL_UNSIGNED_INT, 0);
     //glDrawElements(drawEdges ? GL_LINE_LOOP : GL_TRIANGLES, mIndices.size()*sizeof(Vector3i),  GL_UNSIGNED_INT, 0);
 
-
     glBindVertexArray(0);
 }
 
-//Valence******************************************************************************************
-void Mesh::valence()
-{
-    Surface_mesh::Vertex_iterator vit;
-    Surface_mesh::Vertex_around_vertex_circulator vvit,vvend;
 
-    mValences.erase(mValences.begin(),mValences.end());
 
-    float mean=0;
-    int val;
-    for(vit=mHalfEdge.vertices_begin(); vit!=mHalfEdge.vertices_end(); ++vit)
-    {
-        vvit=vvend=mHalfEdge.vertices(*vit);
-        val=0;
-        do{
-            val++;
-            ++vvit;
-          }while(vvit!=vvend);
-        mValences.push_back(val);
-    }
 
-    for(int i=0; i<mValences.size();++i)
-    {
-        mean+=mValences[i];
-    }
-
-    meanValences=mean/mValences.size();
-
-    cout<<"Valence moyenne: "<< meanValences <<endl;
-}
 
 //Composantes connexes *****************************************************************************
-void Mesh::nbConnex()
+void Mesh::nbConnexTest2()
 {
     //remise a zero de mConnex pour éviter les doublons
     mConnex.erase(mConnex.begin(),mConnex.end());
 
-    std::tr1::unordered_map< int , bool> visitVertex;
-    std::tr1::unordered_map< int , bool> visitNeighbors;
-    std::tr1::unordered_map< int , bool> addVertex;
-
     vector<Surface_mesh::Vertex> component, tmpComp;
 
+    Surface_mesh::Edge_iterator eit;
     Surface_mesh::Vertex_iterator vit;
     Surface_mesh::Vertex_around_vertex_circulator vvit,vvend;
 
-    Surface_mesh::Vertex v0,v;
-
-    std::tr1::unordered_map<int, bool>::const_iterator isVis;
-    std::tr1::unordered_map<int, bool>::const_iterator isAdd;
+    Surface_mesh::Vertex v,v0,v1,v2;
 
 
-    for(vit=mHalfEdge.vertices_begin();vit!=mHalfEdge.vertices_end();++vit)
+    bool isCon,in, in0, in1;
+
+
+    for(vit=mHalfEdge.vertices_begin(); vit!=mHalfEdge.vertices_end(); ++vit)
+    {
+        //////////////////////////////////
+        cout <<"~~~~~~~~~~~~~~"<< endl;
+        cout<< "->" <<*vit<<":"<<endl;
+
+        vvit=vvend=mHalfEdge.vertices(*vit);
+        do{
+            v=*vvit;
+            cout<<v<<endl;
+            ++vvit;
+          }while(vvit!=vvend);
+
+////////////////////////////////////////////////////////////
+//        isCon=false;
+
+//        vvit=vvend=mHalfEdge.vertices(*vit);
+//        //v=*vvit;
+
+//        if(vit==mHalfEdge.vertices_begin())
+//        {
+//            component.push_back(*vit);
+
+//            do{
+//                v=*vvit;
+//                component.push_back(v);
+//                ++vvit;
+//            }while(vvit!=vvend);
+
+//        }
+
+//        else
+//        {
+//           tmpComp.push_back(*vit);
+//           do{
+//               v=*vvit;
+//               tmpComp.push_back(v);
+//               ++vvit;
+//           }while(vvit!=vvend);
+
+
+//           for(int i=0; i<component.size();++i)
+//           {
+
+//               for(int j=0; j<tmpComp.size();++j)
+//               {
+
+//                   if(component[i]==tmpComp[j])
+//                   {
+//                       isCon=true;
+//                       j=tmpComp.size();
+//                       i=component.size();
+//                   }
+//               }
+//           }
+
+//           if(isCon==true)
+//           {
+//                for(int j=0; j<tmpComp.size();++j)
+//                {
+//                    in=false;
+
+//                    for (int i=0; i<component.size();++i)
+//                    {
+//                        if(tmpComp[j]==component[i])
+//                        {
+//                            in=true;
+//                            i=component.size();
+//                        }
+//                    }
+
+//                    if(in==false)
+//                        component.push_back(tmpComp[j]);
+
+//                }
+//           }
+//           else
+//           {
+//               mConnex.push_back(component);
+//               component=tmpComp;
+
+//           }
+//           tmpComp.erase(tmpComp.begin(),tmpComp.end());
+
+
+
+//        }
+
+            ////////////////////////////////////////////
+
+
+    }
+    mConnex.push_back(component);
+    //cout <<"~~~~~~~~~~~~~~"<< endl;
+    cout <<"nb composantes connexes :"<< mConnex.size() << endl;
+
+    //color
+    for(int i=0; i<mConnex.size();++i)
     {
 
-
-        v0=*vit;
-
-
-        isVis = visitVertex.find (v0.idx());
-
-        if ( isVis == visitVertex.end() )//vertex non visité création d'une composante connexe
+        for(int j=0; j<mConnex[i].size();++j)
         {
-
-            component.erase(component.begin(),component.end());
-            tmpComp.erase(tmpComp.begin(),tmpComp.end());
-            visitNeighbors.erase(visitNeighbors.begin(),visitNeighbors.end());
-
-            component.push_back(v0);
-            addVertex[v0.idx()]=true;
-            vvit=vvend=mHalfEdge.vertices(v0);
-            do{
-                v=*vvit;
-                component.push_back(v);
-                addVertex[v.idx()]=true;
-                ++vvit;
-              }while(vvit!=vvend);
-
-            visitNeighbors[v0.idx()]=true;
-            visitVertex[v0.idx()]=true;
-
-            tmpComp = component;
+            for(int k=0; k<posVert.size();++k)
+            {
+                if(posVert[k]==mConnex[i][j])
+                    mColors[k]=Vector3f(float(i)/(mConnex.size()-1),float(i)/(mConnex.size()-1),float(i)/(mConnex.size()-1));
 
 
-            do{
-                for(int i=0; i<component.size();++i)
-                {
-                    isVis = visitNeighbors.find (component[i].idx());
-                    if ( isVis == visitNeighbors.end() )//non visité
-                    {
-                        //visiter voisin
-                        vvit=vvend=mHalfEdge.vertices(component[i]);
-                        do{
-                             v=*vvit;
-
-                             isAdd = addVertex.find(v.idx());
-                             if(isAdd == addVertex.end())
-                                {
-                                tmpComp.push_back(v);
-                                addVertex[v.idx()]=true;
-                                }
-
-                             ++vvit;
-
-                            }while(vvit!=vvend);
-
-                        visitNeighbors[component[i].idx()]=true;
-                        visitVertex[component[i].idx()]=true;
-
-
-                    }
-
-
-                }
-
-                component=tmpComp;
-            }while(component.size()!=visitNeighbors.size());
-
-            mConnex.push_back(component);
+            }
         }
 
     }
+    Mesh::init(mCurrentShader);
 
-   cout<< "nombre de composantes connexes: " <<mConnex.size()<<endl;
+}
+///test2//////////////////////////////////////
+//Composantes connexes *****************************************************************************
+void Mesh::nbConnexTest()
+{
 
-       //color
-   float red, green, blue;
-       for(int i=0; i<mConnex.size();++i)
-       {
+    //remise a zero de mConnex pour éviter les doublons
+    mConnex.erase(mConnex.begin(),mConnex.end());
 
-           red = Eigen::internal::random<float>(0,1);
-           green = Eigen::internal::random<float>(0,1);
-           blue = float(i)/(mConnex.size()-1);
-           for(int j=0; j<mConnex[i].size();++j)
+    vector<Surface_mesh::Vertex> component, tmpComp, stockVertices;
+
+    Surface_mesh::Edge_iterator eit;
+    Surface_mesh::Vertex_iterator vit;
+    Surface_mesh::Vertex_around_vertex_circulator vvit,vvend;
+
+    Surface_mesh::Vertex v,v0,v1,v2;
+
+
+    bool isCon,in, in0, in1;
+    //int ind;
+
+
+    for(vit=mHalfEdge.vertices_begin(); vit!=mHalfEdge.vertices_end(); ++vit)
+    {
+//////////////////////////////////////////////////////////////
+//        cout <<"~~~~~~~~~~~~~~"<< endl;
+//        cout<< "->" <<*vit<<":"<<endl;
+
+//        vvit=vvend=mHalfEdge.vertices(*vit);
+//        do{
+//            v=*vvit;
+//            cout<<v<<endl;
+//            ++vvit;
+//          }while(vvit!=vvend);
+
+////////////////////////////////////////////////////////////
+        isCon=false;
+
+        vvit=vvend=mHalfEdge.vertices(*vit);
+        //v=*vvit;
+
+        if(vit==mHalfEdge.vertices_begin())
+        {
+
+            component.push_back(*vit);
+
+            do{
+                v=*vvit;
+                component.push_back(v);
+                ++vvit;
+            }while(vvit!=vvend);
+            mConnex.push_back(component);
+        }
+
+        else
+        {
+           tmpComp.erase(tmpComp.begin(),tmpComp.end());
+           tmpComp.push_back(*vit);
+           do{
+               v=*vvit;
+               tmpComp.push_back(v);
+               ++vvit;
+           }while(vvit!=vvend);
+
+            //Verifie si connecté à un sommet déjà parcouru
+           int ind=-1;
+           for(int i=0; i<mConnex.size();++i)
            {
-               for(int k=0; k<posVert.size();++k)
-               {
-                   if(posVert[k]==mConnex[i][j])
-                   {
-                       mColors[k]=Vector3f( red, green ,blue);
-                   }
 
+                for(int j=0;j<mConnex[i].size();++j)
+                {
 
-               }
+                    for(int k=0; k<tmpComp.size();++k)
+                    {
+
+                        if(mConnex[i][j]==tmpComp[k])
+                        {
+                            ind=i;
+                            k=tmpComp.size();
+//                          j=mConnex[i].size();
+//                          i=mConnex.size();
+                        }
+
+                    }
+
+                    //if(ind!=-1)
+                    //    break;
+                }
+                //if(ind!=-1)
+                //    break;
            }
 
-       }
-       Mesh::init(mCurrentShader);
+           //si connecté alors remplir la composante concernée
+           if(ind!=-1)
+           {
+
+             for(int i=0; i<tmpComp.size();++i)
+             {
+                 in=false;
+
+                 for(int j=0; j<mConnex[ind].size();++j)
+                 {
+                    if(tmpComp[i]==mConnex[ind][j])
+                    {
+                        in=true;
+                        j=mConnex[ind].size();
+                    }
+                 }
+
+                 if(in==false)
+                 {
+                     mConnex[ind].push_back(tmpComp[i]);
+                 }
+
+             }
+           }
+           else //Sinon, création d'une nouvelle composante
+           {
+
+            mConnex.push_back(tmpComp);
+
+           }
+
+
+
+
+
+           //////
+
+
+
+
+
+        }
+
+            ////////////////////////////////////////////
+
+
+    }
+    //mConnex.push_back(component);
+    //cout <<"~~~~~~~~~~~~~~"<< endl;
+    cout <<"nb composantes connexes :"<< mConnex.size() << endl;
+
+//    //color
+//    for(int i=0; i<mConnex.size();++i)
+//    {
+
+//        for(int j=0; j<mConnex[i].size();++j)
+//        {
+//            for(int k=0; k<posVert.size();++k)
+//            {
+//                if(posVert[k]==mConnex[i][j])
+//                    mColors[k]=Vector3f(float(i)/(mConnex.size()-1),float(i)/(mConnex.size()-1),float(i)/(mConnex.size()-1));
+
+
+//            }
+//        }
+
+//    }
+//    Mesh::init(mCurrentShader);
 
 }
 
+
+///////////////////////////////////////////////
 //Afficher les sommets des Composantes connexes******************************************************************
 
 void Mesh::displayConnex()
@@ -357,7 +502,7 @@ void Mesh::detectHole()
 
 
 
-    std::cout<<"nombre de trous: "<<mHoles.size()<<std::endl;
+    std::cout<<"nbHole="<<mHoles.size()<<std::endl;
 
     if(mHoles.empty())
     {
@@ -403,23 +548,6 @@ void Mesh::displayHoles()
     }
 
 }
-//Analyse***************************************************************************
-void Mesh::analysis()
-{
-
-
-
-
-    cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
-    cout<<"Nombre de sommets: "<< mPositions.size() << endl;
-    cout<<"Nombre de faces: "<< mIndices.size() << endl;
-    valence();
-    detectHole();
-    nbConnex();
-    cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
-}
-
-
 /************************************************************************************************/
 void Mesh::holeTriangulation(vector<Surface_mesh::Vertex> &hole)
 {

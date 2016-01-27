@@ -19,9 +19,6 @@ public:
     void displayConnex();
     void holeTriangulation(std::vector<surface_mesh::Surface_mesh::Vertex> &hole);
     void earClimpy(std::vector<surface_mesh::Surface_mesh::Vertex> &hole);
-    void nbConnexTest();
-    void nbConnexTest2();
-    void nbConnexTest3();
     void nbConnex();
     void valence();
     void analysis();

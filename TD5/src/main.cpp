@@ -311,11 +311,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         else if(key == GLFW_KEY_X)//detection de trou
         {
 
-
             mMeshes[mCurrentMesh]->detectHole();
-
-
-
 
         }
 
@@ -330,116 +326,24 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         {
             //mMeshes[mCurrentMesh]->displayHoles();
             mMeshes[mCurrentMesh]->fillHole(1);
-
-
-        }
-
-        else if(key == GLFW_KEY_P)
-        {
-//            Vector2f A(2,-3);
-//            Vector2f B(3,1);
-//            Vector2f C(-1,4);
-
-//            Vector2f AB = B-A;
-//            Vector2f AC = C-A;
-
-//            double cosBAC=( AB.dot(AC) ) / (AB.norm() * AC.norm());
-
-//            double BAC=acos(cosBAC);
-
-//            double angle = (BAC/M_PI) * 180;
-
-//            std::cout << BAC << std::endl;
-
-//            Vector3f A(0,0,0);
-//            Vector3f B(3,0,0);
-//            Vector3f C(1.5,3,0);
-
-//            Vector3f M(1.5,1.5,0);
-//            Vector3f N(5,5,5);
-
-//            Vector3f AB = B-A;
-//            Vector3f AM = M-A;
-//            Vector3f AN = N-A;
-//            Vector3f AC = C-A;
-
-//            Vector3f BA = A-B;
-//            Vector3f BM = M-B;
-//            Vector3f BN = N-B;
-//            Vector3f BC = C-B;
-
-//            Vector3f CA = A-C;
-//            Vector3f CM = M-C;
-//            Vector3f CN = N-C;
-//            Vector3f CB = B-C;
-
-//            float v0m = (AB.cross(AM)).dot(AM.cross(AC));
-//            float v1m = (BA.cross(BM)).dot(BM.cross(BC));
-//            float v2m = (CA.cross(CM)).dot(CM.cross(CB));
-
-//            float v0n = (AB.cross(AN)).dot(AN.cross(AC));
-//            float v1n = (BA.cross(BN)).dot(BN.cross(BC));
-//            float v2n = (CA.cross(CN)).dot(CN.cross(CB));
-
-//            if(v0m>=0 && v1m>=0 && v2m>=0)
-//                std::cout<< "M appartient à ABC" << std::endl;
-//            else
-//                std::cout<< "M n'appartient pas à ABC" << std::endl;
-
-//            if(v0n>=0 && v1n>=0 && v2n>=0)
-//                std::cout<< "N appartient à ABC" << std::endl;
-//            else
-//                std::cout<< "N n'appartient pas à ABC" << std::endl;
-////
-//              Vector3f A(1,0);
-//              Vector3f B(0,1);
-
-//              Vector3f C = A.cross(B);
-//              Vector3f D = B.cross(A);
-
-//              std::cout<< "C="<< C << std::endl<<std::endl;
-
-//              std::cout<< "D="<< D << std::endl;
-////
-
-            std::tr1::unordered_map<std::string, int> months;
-                months["january"] = 31;
-                months["february"] = 28;
-                months["march"] = 31;
-                months["april"] = 30;
-                months["may"] = 31;
-                months["june"] = 30;
-                months["july"] = 31;
-                months["august"] = 31;
-                months["september"] = 30;
-                months["october"] = 31;
-                months["november"] = 30;
-                months["december"] = 31;
-//                std::cout << "september -> " << months["september"] << std::endl;
-//                std::cout << "april     -> " << months["april"] << std::endl;
-//                std::cout << "december  -> " << months["december"] << std::endl;
-//                std::cout << "february  -> " << months["february"] << std::endl;
-                std::cout << " months.size() ->" <<  months.size() << std::endl;
-
-                std::tr1::unordered_map<std::string, int>::const_iterator got = months.find ("input");
-
-                if ( got == months.end() )
-                  std::cout << "not found";
-                else
-                  std::cout << got->first << " is " << got->second;
-
-                std::cout << std::endl;
-
-
-
-
-
         }
 
         else if(key == GLFW_KEY_O)
         {
             mMeshes[mCurrentMesh]->nbConnex();
             //mMeshes[mCurrentMesh]->displayConnex();
+        }
+
+        else if(key == GLFW_KEY_O)
+        {
+            mMeshes[mCurrentMesh]->nbConnex();
+            //mMeshes[mCurrentMesh]->displayConnex();
+        }
+
+        else if(key == GLFW_KEY_V)
+        {
+            mMeshes[mCurrentMesh]->analysis();
+
         }
 
 
